@@ -93,7 +93,7 @@ public class Game {
 
         // Start button to begin the adventure
         JButton startButton = new JButton("Start Adventure");
-        startButton.addActionListener(e -> gameLoop(frame, panel, healthLabel, messageLabel, topPanel));
+        startButton.addActionListener(_ -> gameLoop(frame, panel, healthLabel, messageLabel, topPanel));
 
         // Add components to the main panel
         panel.add(topPanel, BorderLayout.NORTH);
@@ -146,23 +146,20 @@ public class Game {
 
     // Get the background color based on the level
     private Color getLevelColor(int level) {
-        switch (level % 5) {
-            case 1: return Color.LIGHT_GRAY;
-            case 2: return Color.CYAN;
-            case 3: return Color.PINK;
-            case 4: return Color.ORANGE;
-            default: return Color.GREEN;
-        }
+        return switch (level % 5) {
+            case 1 -> Color.LIGHT_GRAY;
+            case 2 -> Color.CYAN;
+            case 3 -> Color.PINK;
+            case 4 -> Color.ORANGE;
+            default -> Color.GREEN;
+        };
     }
 
     // Get a string of health icons based on the player's health
     private String getHealthIcons() {
         int starCount = health / 10; // Each 10 health points is represented by one star
-        StringBuilder healthBar = new StringBuilder();
-        for (int i = 0; i < starCount; i++) {
-            healthBar.append("★ "); // Append stars to the health bar
-        }
-        return healthBar.toString().trim();
+        return "★ ".repeat(Math.max(0, starCount)) // Append stars to the health bar
+                .trim();
     }
 
     // Save the player's session data in a CSV file
@@ -261,4 +258,5 @@ public class Game {
             }
         }
     }
+
 }
