@@ -202,10 +202,29 @@ public class Game {
         return players;
     }
 
-    // Main game loop
+    // Method to display the leaderboard in a pop-up
+    private void displayLeaderboard(JFrame frame) {
+        Map<String, Integer> players = readPlayerSessions();
+        List<String> leaderboard = new ArrayList<>();
+        players.forEach((name, score) -> leaderboard.add(name + ": " + score));
+
+        // Sort the leaderboard by score in descending order
+        leaderboard.sort((entry1, entry2) -> Integer.compare(Integer.parseInt(entry2.split(":")[1].trim()), Integer.parseInt(entry1.split(":")[1].trim())));
+
+        // Prepare the leaderboard message
+        StringBuilder leaderboardMessage = new StringBuilder("Leaderboard:\n\n");
+        for (String entry : leaderboard) {
+            leaderboardMessage.append(entry).append("\n");
+        }
+
+        // Show the leaderboard in a dialog
+        JOptionPane.showMessageDialog(frame, leaderboardMessage.toString());
+    }
+
+    // Game loop: Processes player's answers and handles the flow
     private void gameLoop(JFrame frame, JPanel panel, JLabel healthLabel, JLabel messageLabel, JPanel topPanel) {
         // Hide the start button
-        panel.remove(panel.getComponentCount() - 1); // Remove the "Start Adventure" button
+        panel.remove(panel.getComponentCount() - 1);
         panel.revalidate();
         panel.repaint();
 
@@ -232,6 +251,9 @@ public class Game {
             healthLabel.setText(getHealthIcons());
             level++; // Increase the level
             topPanel.setBackground(getLevelColor(level));
+
+            // Show leaderboard after each question
+            displayLeaderboard(frame);
 
             if (health <= 0) {
                 JOptionPane.showMessageDialog(frame, "Game Over! You have lost all your health.");
