@@ -7,8 +7,8 @@ import java.util.List;
 
 // Represents a room in the game
 public class Room {
-    private final String description; // Description of the room
-    private final List<Challenge> challenges; // Challenges in the room
+    private String description; // Description of the room
+    private List<Challenge> challenges; // Challenges in the room
     private Room forward;  // Link to the forward room
     private Room back;     // Link to the back room
     private Room left;     // Link to the left room
@@ -67,5 +67,13 @@ public class Room {
 
     public Room getRight() {
         return right;
+    }
+
+    public Challenge getChallenge() {
+        return null;
+    }
+
+    public String getDifficulty() {
+        return "";
     }
 }

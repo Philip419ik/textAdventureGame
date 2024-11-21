@@ -3,7 +3,7 @@ package models.challenges;
 import java.util.Scanner;
 
 // Represents a puzzle challenge
-public class Puzzle extends Challenge {
+public abstract class Puzzle extends Challenge {
     private String question;   // The puzzle question
     private String answer;     // The correct answer
 

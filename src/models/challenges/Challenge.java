@@ -16,4 +16,6 @@ public abstract class Challenge {
 
     // Abstract method to execute the challenge
     public abstract boolean execute();
+
+    public abstract boolean isCorrectAnswer(int answerNumber);
 }

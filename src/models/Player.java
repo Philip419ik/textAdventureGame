@@ -5,10 +5,9 @@ import java.util.Map;
 
 // Represents the player in the game
 public class Player {
-    // Player's name
-    private final String name;
+    private String name; // Player's name
     private int health;  // Player's health
-    private final Map<String, Integer> inventory; // Inventory of items
+    private Map<String, Integer> inventory; // Inventory of items
 
     // Constructor to initialize the player with a name and health
     public Player(String name, int health) {

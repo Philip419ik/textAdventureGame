@@ -3,7 +3,7 @@ package models.challenges;
 import java.util.Random;
 
 // Represents an enemy combat challenge
-public class EnemyChallenge extends Challenge {
+public abstract class EnemyChallenge extends Challenge {
     private String enemyName;  // Name of the enemy
     private int enemyHealth;   // Enemy's health
 
